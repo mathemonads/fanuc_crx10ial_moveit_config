@@ -21,18 +21,13 @@ hardware_interface:
 joint_state_controller:
   type: joint_state_controller/JointStateController
   publish_rate: 50
-controller_list:
-  - name: arm_position_controller
-    action_ns: follow_joint_trajectory
-    type: FollowJointTrajectory
-    joints: [joint_1, joint_2, joint_3, joint_4, joint_5, joint_6]
 arm_position_controller:
   type: position_controllers/JointTrajectoryController
   joints: [joint_1, joint_2, joint_3, joint_4, joint_5, joint_6]
   gains:
           joint_1: {p: 100, i: 0.1, d: 10}
           joint_2: {p: 100, i: 0.1, d: 10}
-          joint_3: {p: 100, i: 0.1, d: 10}
+          joint_3: {p: -100.0, i: -0.01, d: -10.0}
           joint_4: {p: 100, i: 0.1, d: 10}
           joint_5: {p: 100, i: 0.1, d: 10}
           joint_3: {p: 100, i: 0.1, d: 10}
