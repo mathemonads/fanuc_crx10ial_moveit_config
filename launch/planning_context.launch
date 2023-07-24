@@ -6,7 +6,8 @@
   <arg name="robot_description" default="robot_description"/>
 
   <!-- Load universal robot description format (URDF) -->
-  <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="xacro  '$(find fanuc_crx10ia_support)/urdf/crx10ial.xacro'"/>
+  <?ignore <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="xacro  '$(find fanuc_crx10ia_support)/urdf/crx10ial.xacro'"/> ?>
+  <param if="$(arg load_robot_description)" name="$(arg robot_description)" command="xacro  '$(find fanuc_crx10ial_moveit_config)/gazebo.urdf'"/>
 
   <!-- The semantic description that corresponds to the URDF -->
   <param name="$(arg robot_description)_semantic" textfile="$(find fanuc_crx10ial_moveit_config)/config/fanuc_crx10ial.srdf" />
