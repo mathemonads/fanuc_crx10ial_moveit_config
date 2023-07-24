@@ -2,7 +2,6 @@
 <launch>
 	<rosparam command="load" file="$(find fanuc_crx10ia_support)/config/joint_names_crx10ial.yaml" />
 	<rosparam command="load" file="$(find fanuc_crx10ial_moveit_config)/config/moveit_controllers.yaml" />
-	<rosparam command="load" file="$(find fanuc_crx10ial_moveit_config)/config/ros_controllers.yaml" />
 
 	<arg name="sim" default="true" doc="Use industrial robot simulator instead of real robot if true" />
 	<arg name="robot_ip" unless="$(arg sim)" doc="IP of controller (only required if not using industrial simulator)" default="172.16.20.220" />
@@ -12,6 +11,7 @@
 	<arg name="debug" default="true" />
 	<arg name="load_robot_description" default="true" />
 	<arg name="fake_execution_type" default="interpolate" />
+	<arg name="urdf_path" default="$(find fanuc_crx10ial_moveit_config)/gazebo.urdf" />
 
 	<include file="$(find fanuc_crx10ial_moveit_config)/launch/planning_context.launch" >
 		<arg name="load_robot_description" value="true" />
@@ -38,6 +38,9 @@
 		<arg name="rviz_config" value="$(find fanuc_crx10ial_moveit_config)/launch/moveit.rviz" />
 		<arg name="debug" value="false" />
 	</include>
+
+	<include file="$(find fanuc_crx10ial_moveit_config)/launch/ros_controllers.launch"/>
+	<include file="$(find fanuc_crx10ial_moveit_config)/launch/fanuc_crx10ial_moveit_controller_manager.launch.xml" />
 	
 	<include file="$(find fanuc_crx10ial_moveit_config)/launch/move_group.launch">
 		<arg name="allow_trajectory_execution" value="true" />
@@ -48,6 +51,5 @@
 		<arg name="debug" value="$(arg debug)" />
 		<arg name="load_robot_description" value="$(arg load_robot_description)" />
 	</include>
-
 	<!-- database stuff -->
 </launch>

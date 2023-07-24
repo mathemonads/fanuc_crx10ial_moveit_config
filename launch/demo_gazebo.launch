@@ -34,6 +34,7 @@
     <arg name="urdf_path" value="$(arg urdf_path)"/>
   </include>
 
+<?ignore
   <!-- If needed, broadcast static tf for robot root -->
   
   <!-- We do not have a robot connected, so publish fake joint states -->
@@ -68,5 +69,6 @@
   <include file="$(find fanuc_crx10ial_moveit_config)/launch/default_warehouse_db.launch" if="$(arg db)">
     <arg name="moveit_warehouse_database_path" value="$(arg db_path)"/>
   </include>
+?>
 
 </launch>
